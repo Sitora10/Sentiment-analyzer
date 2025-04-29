@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Временные файлы
+*.log
+*.tmp
+
+# Модели и большие файлы
+*.pkl
+*.bin
+*.vec
+cc.uz.300.bin
+custom_uzbek_model.bin
+custom_uzbek_model.vec
+svm_sentiment.pkl
+
+# Данные
+sentences.xlsx
+*.csv
+*.xlsx
+
+# Django (если применимо)
+*.sqlite3
+media/
+static/
+
+# IDE и редакторы
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store

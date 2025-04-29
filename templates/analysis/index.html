@@ -1,0 +1,48 @@
+<!-- templates/analysis/index.html -->
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="id_text">Matn kiriting:</label><br>
+            {{ form.text }}
+        </div>
+        <br>
+        <div>
+            <label for="id_file">Fayl tanlang (.txt, .docx, .pdf):</label><br>
+            {{ form.file }}
+        </div>
+        <br>
+        <button type="submit">Send</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            {% if result.error %}
+                <p>Xatolik: {{ result.error }}</p>
+            {% elif result.type == "text" %}
+                <h3>Tahlil natijasi (Matn):</h3>
+                <p><strong>Matn:</strong> {{ result.input }}</p>
+                <p><strong>Sentiment:</strong> {{ result.sentiment }}</p>
+            {% elif result.type == "file" %}
+                <h3>Tahlil natijasi (Fayl: {{ result.filename }})</h3>
+                <p><strong>Umumiy gaplar soni:</strong> {{ result.analysis.total }}</p>
+                <p><strong>Positive gaplar:</strong> {{ result.analysis.positive }}</p>
+                <p><strong>Negative gaplar:</strong> {{ result.analysis.negative }}</p>
+                <p><strong>Positive foiz:</strong> {{ result.analysis.positive_percentage }}%</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
